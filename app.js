@@ -18,7 +18,7 @@ function render(focus=true){
  $('test-banner').hidden=!testMode;$('save').disabled=testMode;
  if(current===null&&!reviewing){
   $('stage').textContent='Deine Perspektive zählt';$('progress-label').textContent='Start';$('progress').value=0;
-  box.append(el('p','HANDY- UND IPAD-REGELUNG','question-meta'),el('h2','Sag, wie du es erlebst.','welcome'),el('p','Hier gibt es keine richtigen oder falschen Antworten. Die Fragen passen sich an deine Angaben an.'),el('p','Wir fragen nur nach deiner Klassenstufe, nicht nach deiner genauen Klasse. Wenn du eine Frage nicht beantworten möchtest, kannst du sie überspringen oder die entsprechende Antwort wählen.'),el('p','Wichtig: Am Ende wird nichts abgeschickt. Du kannst deine Antworten prüfen und herunterladen.','hint'));
+  box.append(el('p','HANDY- UND IPAD-REGELUNG','question-meta'),el('h2','Sag, wie du es erlebst.','welcome'),el('p','Hier gibt es keine richtigen oder falschen Antworten. Die Fragen passen sich an deine Angaben an.'),el('p','Wir fragen nur nach deiner Klassenstufe, nicht nach deiner genauen Klasse. Freiwillige Fragen kannst du überspringen. Einige Fragen sind nötig, um dir passende Folgefragen zu zeigen.'),el('p','Wichtig: Am Ende wird nichts abgeschickt. Du kannst deine Antworten prüfen und herunterladen.','hint'));
   box.append(button('Umfrage starten',()=>{current=1;render();},'primary'));return;
  }
  if(reviewing){renderReview();if(focus)focusTitle();return;}
@@ -40,7 +40,7 @@ function renderReview(){
  box.append(el('p',testMode?'BEISPIELANTWORTEN':'DEINE ÜBERSICHT','question-meta'),el('h2','Deine Antworten sind fertig.'),el('p','Es wurde nichts übermittelt. Prüfe deine Angaben und lade sie bei Bedarf herunter. Ein Download wird nicht automatisch an die Schule geschickt.','hint'));
  if(!SURVEY_CONFIG.oldRule.trim())box.append(el('p','Die Frage zur früheren Handyregelung wurde übersprungen, weil deren Beschreibung noch fehlt.','notice'));
  const actions=el('div',undefined,'export-actions');actions.append(button('JSON herunterladen',()=>download('json'),'primary'),button('CSV herunterladen',()=>download('csv')));box.append(actions);
- activePath(answers).forEach(id=>{const q=QUESTIONS[id-1], row=el('div',undefined,'review-item');row.append(el('h3',q.title),el('p',answers[id]||'Keine Angabe','review-meta'),button('Ändern',()=>{current=id;reviewing=false;render();},'linkbtn'));box.append(row);});
+ activePath(answers).forEach(id=>{const q=QUESTIONS[id-1], row=el('div',undefined,'review-item');row.append(el('h3',q.title),el('p',answers[id]||'Nicht beantwortet','review-meta'),button('Ändern',()=>{current=id;reviewing=false;render();},'linkbtn'));box.append(row);});
  box.append(button('Neue leere Umfrage',()=>resetAll(false),'linkbtn'));
 }
 function exportData(){const clean=cleanAnswers(answers);return {umfrage:'Handy- und iPad-Regelung',version:SURVEY_CONFIG.version,testdaten:testMode,erfassung:'lokaler_export_ohne_uebermittlung',fruehere_regelung:SURVEY_CONFIG.oldRule.trim()||null,antworten:activePath(clean).map(id=>({frage_id:id,frage:QUESTIONS[id-1].title,antwort:clean[id]??null}))};}
