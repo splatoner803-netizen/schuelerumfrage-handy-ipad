@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="Freiwillige Schülerumfrage zur Handy- und iPad-Regelung. Lokale Exportversion ohne zentrale Erfassung.">
+ <meta name="referrer" content="no-referrer">
+ <title>Handy & iPad · Deine Meinung</title>
+ <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt</a>
+<header class="topbar"><span class="brand"><span class="brand-icon" aria-hidden="true">▤</span> SCHULUMFRAGE</span><span class="tag">Lokale Exportversion</span></header>
+<div class="layout">
+ <aside class="intro">
+  <p class="eyebrow">KLASSEN 5–10 · EF · Q1 · Q2</p>
+  <h1>Handy & iPad.<br><span>Wie läuft’s für dich?</span></h1>
+  <p class="lead">Deine Erfahrungen mit den Regeln an deiner Schule. Was klappt gut? Was könnte besser sein?</p>
+  <div class="facts"><span>Etwa 5–8 Minuten</span><span>Freiwillig</span><span>Ohne Namensabfrage</span></div>
+  <div class="privacy"><h2>Deine Antworten bleiben hier</h2><p>Diese Website sendet keine Antworten an die Schule. Sie bleiben zunächst nur im geöffneten Tab. Du kannst sie am Ende als Datei herunterladen.</p><p>Nur wenn du „Auf diesem Gerät speichern“ wählst, werden sie zusätzlich im Browser gespeichert. Auf gemeinsam genutzten Geräten bitte anschließend löschen.</p></div>
+  <p class="small">Bitte nenne keine Namen, Kontaktdaten, genaue Klasse oder andere Angaben, an denen man dich oder andere erkennen kann.</p>
+  <details><summary>Hinweise zur Umfrage</summary><p>Du kannst bei Auswahlfragen „Möchte ich nicht angeben“ wählen. Nur wenige Fragen sind nötig, um dir passende Folgefragen zu zeigen. Alle Freitextfelder sind freiwillig.</p><p id="old-rule-info">Die frühere Handyregelung ist noch nicht beschrieben. Die Frage dazu wird übersprungen, bis die Schule den Platzhalter ergänzt hat.</p><p>Für eine gemeinsame Auswertung braucht es Microsoft Forms oder einen Server mit einer Datenbank. Diese Version hat beides nicht. Ein Webseitenanbieter kann technische Zugriffsdaten verarbeiten; die Umfrage selbst erhebt keine IP-Adressen oder Gerätekennungen.</p></details>
+ </aside>
+ <main id="main" tabindex="-1">
+  <div class="survey-top"><span id="stage">Los geht’s</span><span id="progress-label"></span></div>
+  <progress id="progress" max="100" value="0" aria-label="Fortschritt im aktuell bekannten Fragenpfad"></progress>
+  <div id="test-banner" class="notice" hidden>Testmodus · Beispieldaten · kein Speichern auf diesem Gerät</div>
+  <section class="card" id="content" aria-label="Umfrage"></section>
+  <p id="status" role="status" class="status"></p>
+  <div class="utilities"><button type="button" id="save" class="linkbtn">Auf diesem Gerät speichern</button><button type="button" id="restore" class="linkbtn">Gespeicherten Stand laden</button><button type="button" id="reset" class="linkbtn">Antworten löschen</button></div>
+  <details class="test-panel"><summary>Umfrage testen</summary><p>Mit Beispieldaten kannst du die Verzweigungen prüfen. Der aktuelle Stand im Tab wird dabei ersetzt. Ein bereits gespeicherter Stand bleibt erhalten.</p><label for="scenario">Beispiel auswählen</label><select id="scenario"><option value="none">Klasse 5 · ohne Handy · ohne iPad</option><option value="os">Q1 · Handy · Tasche mit Schäden · Schul-iPad</option><option value="nobag">Klasse 10 · Handy · ohne Tasche · eigenes iPad ohne Sperrregelung</option></select><button type="button" class="secondary" id="load-test">Beispiel laden</button><button type="button" class="linkbtn" id="self-test">Verzweigungen automatisch prüfen</button><p id="test-result" role="status"></p></details>
+ </main>
+</div>
+<footer>Handy- und iPad-Regelung · Ohne Namensabfrage · Keine zentrale Antworterfassung</footer>
+<noscript><p class="notice">Bitte aktiviere JavaScript, damit die Umfrage und ihre Verzweigungen funktionieren.</p></noscript>
+<script src="questions.js"></script><script src="app.js"></script>
+</body></html>
