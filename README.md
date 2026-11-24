@@ -1,34 +1,21 @@
 # Schülerumfrage zur Handy- und iPad-Regelung
 
-Deutschsprachige responsive Umfrage für die Klassen 5–10 und EF/Q1/Q2.
+Responsive Umfrage für Klassen 5–10 und EF/Q1/Q2. Teilnahme ohne Anmeldung.
 
-## Website
+## Antworten absenden
 
-Diese statische Website benötigt für Teilnehmer keine Anmeldung. Sie kann über GitHub Pages oder lokal durch Öffnen von `index.html` verwendet werden.
+Die Website sendet Antworten erst nach einem Klick auf „Antworten absenden“ per HTTPS an einen temporären Cloudflare-Tunnel zum PC der Umfrageleitung. Der dort laufende Server prüft und speichert sie in SQLite. Die Erfolgsmeldung erscheint erst nach bestätigter Speicherung. Bei Fehlern bleiben Antworten im Tab; unveränderte Wiederholungsversuche werden nicht doppelt gezählt.
 
-## Antworten und Datenschutz
+Der PC und der Tunnel müssen laufen. `SURVEY_CONFIG.apiUrl` enthält die aktuelle Tunneladresse. Nach einem Neustart des Tunnels muss sie aktualisiert werden. GitHub Pages selbst speichert keine Antworten. Die nur lokal erreichbare Auswertung läuft getrennt auf Port 8788; der Tunnel führt ausschließlich zum Empfang auf Port 8787.
 
-- Keine zentrale Erfassung oder Übermittlung von Antworten.
-- Antworten bleiben zunächst im geöffneten Tab und werden beim Schließen oder Neuladen verworfen.
-- Optionales Speichern erfolgt ausschließlich nach einem Klick im lokalen Browser.
-- JSON- und CSV-Export am Ende; kein automatischer Versand an die Schule.
-- Keine Namens-, E-Mail-, Gerätekennungs- oder genaue Klassenabfrage. Freitexte können dennoch versehentlich personenbezogene Angaben enthalten.
-- GitHub verarbeitet beim Hosting technische Zugriffsdaten unabhängig vom Umfragecode.
+## Fragen und Datenschutz
 
-Für eine zentrale Befragung muss zusätzlich ein geeignetes Backend oder ein entsprechend eingerichtetes Microsoft-Forms-Formular verwendet werden.
+Die bereitgestellte Forms-Vorlage dient als inhaltlicher Leitfaden. Die frühere Regelung ist darin beschrieben und wurde entsprechend übernommen. Neutrale Skalen, einzelne Klassenstufen und die Einhaltungsfrage nur für EF/Q1/Q2 bleiben erhalten. Ohne Handy keine persönlichen Handynutzungsfragen, ohne Tasche keine Taschenfolgefragen, ohne schulisch genutztes iPad keine iPad-Erfahrungsfragen. Veraltete Antworten werden entfernt und serverseitig abgewiesen.
 
-## Verzweigungen
+Keine Namen, genaue Klassen, E-Mail-Adressen oder Gerätekennungen. Keine IP-Adressen oder Antwortzeiten in der Antwortdatenbank. Eine zufällige Kennung pro Versand ermöglicht sichere Wiederholungsversuche. Freitexte können unbeabsichtigt persönliche Angaben enthalten. GitHub und Cloudflare können technische Verbindungsdaten verarbeiten.
 
-Die Einhaltungsfrage erscheint nur für EF/Q1/Q2 mit Handy. Ohne Handy werden persönliche Handynutzungsfragen übersprungen. Ohne Tasche entfallen Taschenfragen; Schaden- und Kostenanzahl erscheinen nur bei gemeldeten Schäden. iPad-Erfahrungsfragen setzen ein schulisch genutztes iPad und eine passende Sperrregelung voraus. Nicht mehr passende Antworten werden entfernt.
+## Test und Export
 
-Die frühere Handyregelung ist unbekannt. `SURVEY_CONFIG.oldRule` in `questions.js` bleibt leer; die entsprechende Frage wird übersprungen. Erst eine bestätigte Beschreibung eintragen, um sie zu aktivieren.
+Der Testbereich enthält drei Beispielwege und eine Verzweigungsprüfung. Abgesendete Tests werden getrennt gezählt und aus den normalen Ergebnisexporten ausgeschlossen. Eine eigene lokale CSV-/JSON-Kopie ersetzt kein Absenden. Optionales Browserspeichern erfolgt ausschließlich nach einem Klick. Ohne Anmeldung gibt es keine zuverlässige Begrenzung auf eine Teilnahme pro Person.
 
-## Testen
-
-Der Testbereich enthält drei Beispielwege und eine automatische Verzweigungsprüfung. Testexporte sind gekennzeichnet. Keine echten Antworten zum Testen verwenden.
-
-## Veröffentlichung
-
-GitHub Pages wird aus dem Branch `main` und dessen Stammverzeichnis bereitgestellt. `.nojekyll` kennzeichnet die Website als statische Dateien ohne Jekyll-Verarbeitung.
-
-Die Website verwendet keine externen Schriftarten, Bibliotheken oder Tracking-Skripte.
+GitHub Pages veröffentlicht `main` aus dem Stammverzeichnis. Die Oberfläche verwendet keine externen Bibliotheken, Schriftarten oder Tracking-Skripte.
